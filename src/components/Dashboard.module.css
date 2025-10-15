@@ -1,0 +1,21 @@
+.dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.dashboardHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.dashboardHeader h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.dashboardHeader p {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+}
