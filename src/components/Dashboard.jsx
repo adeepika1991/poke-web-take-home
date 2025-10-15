@@ -4,11 +4,13 @@ import "../App.css";
 import styles from "./Dashboard.module.css";
 import useDebounce from "../hooks/useDebounce";
 import Filters from "./Filters";
+import ChartTypeDistribution from "./ChartTypeDistribution";
 
 // Search query
 // Pass to Filter
 // Add Type filter
 // Check if we get the right data based on the Filter + Search combo
+// Type distribution bar chart (based the selected types, the pokemon with other types will be represented)
 
 const Dashboard = () => {
   const { pokemonData, pokemonDataLoading, pokemonFetchError } =
@@ -70,6 +72,13 @@ const Dashboard = () => {
         onTypeChange={setSelectedType}
         resultCount={filteredData.length}
       />
+      <div className="charts-container">
+        {/* Fixed Bar Chart - Always shows type distribution */}
+        <div className="chart-section">
+          <h3>Type Distribution in Current Selection</h3>
+          <ChartTypeDistribution pokemonData={filteredData} />
+        </div>
+      </div>
     </div>
   );
 };
