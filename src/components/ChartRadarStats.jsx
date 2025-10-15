@@ -42,8 +42,6 @@ const ChartRadarStats = ({ pokemonData = [] }) => {
     }, []);
   }, [pokemonData]);
 
-  console.log(pokemonData);
-
   const colors = [
     "#8884d8",
     "#82ca9d",

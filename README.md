@@ -23,7 +23,7 @@ npm install
 npm run dev
 ```
 
-The app will be available at http://localhost:5173 (or the port specified by Vite).
+The app will be available at http://localhost:3000 (or the port specified by Vite).
 
 ---
 

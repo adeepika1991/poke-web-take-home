@@ -20,7 +20,6 @@ const ChartTypeDistribution = ({ pokemonData = [] }) => {
       }, {})
     ).map(([type, count]) => ({ type, count }));
   }, [pokemonData]);
-  console.log(typeData);
 
   return (
     <div className="chart-card">

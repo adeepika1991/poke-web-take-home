@@ -63,7 +63,6 @@ const Dashboard = () => {
   };
 
   const { primary, secondary } = getChartsToRender(filteredData);
-  console.log(primary);
 
   if (pokemonDataLoading) {
     return (

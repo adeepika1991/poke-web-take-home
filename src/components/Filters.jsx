@@ -11,6 +11,14 @@ const Filters = ({
 }) => {
   const { pokemonTypes, pokemonTypesLoading, pokemonTypesFetchError } =
     usePokemonTypes();
+
+  if (pokemonTypesLoading) {
+    return <p>Loading Pokémon Types...</p>;
+  }
+
+  if (pokemonTypesFetchError) {
+    return <p>Error loading data</p>;
+  }
   return (
     <div className={styles.filters}>
       <div className={styles.filterGroup}>
