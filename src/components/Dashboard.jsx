@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { usePokemonData } from "../hooks/usePokemonData";
 import "../App.css";
 import styles from "./Dashboard.module.css";
+import useDebounce from "../hooks/useDebounce";
+import Filters from "./Filters";
+
+// Search query
+// Pass to Filter
 
 const Dashboard = () => {
   const { pokemonData, pokemonDataLoading, pokemonFetchError } =
-    usePokemonData(30);
+    usePokemonData(150);
+  const [searchQuery, setSearchQuery] = useState("");
+  const debouncedSearchQuery = useDebounce(searchQuery, 500);
 
   if (pokemonDataLoading) {
     return (
@@ -31,6 +38,7 @@ const Dashboard = () => {
         <h1>Pokémon Performance Analytics</h1>
         <p>Analyze battle stats and type distributions</p>
       </header>
+      <Filters searchQuery={searchQuery} onSearchChange={setSearchQuery} />
     </div>
   );
 };
