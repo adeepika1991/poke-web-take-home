@@ -9,6 +9,7 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import { capitalizeFirstLetter } from "../utils/utilFunctions";
 
 const ChartRadarStats = ({ pokemonData = [] }) => {
   const radarData = useMemo(() => {
@@ -64,7 +65,7 @@ const ChartRadarStats = ({ pokemonData = [] }) => {
           {pokemonData.map((pokemon, index) => (
             <Radar
               key={pokemon.name}
-              name={pokemon.name}
+              name={capitalizeFirstLetter(pokemon.name)}
               dataKey={pokemon.name}
               stroke={colors[index % colors.length]}
               fill={colors[index % colors.length]}
