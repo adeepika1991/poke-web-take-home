@@ -21,3 +21,9 @@ export const getPokemonData = async (noOfPokemon) => {
 
   return pokemonDetails;
 };
+
+export const getPokemonTypes = async () => {
+  const { data } = await axios.get(pokemonApi.types);
+  const types = data.results.map((type) => type.name);
+  return ["all", ...types];
+};

@@ -24,7 +24,8 @@
   font-size: 0.9rem;
 }
 
-.searchInput {
+.searchInput,
+.typeSelect {
   padding: 0.75rem;
   border: 2px solid #e1e5e9;
   border-radius: 6px;
@@ -32,7 +33,8 @@
   transition: border-color 0.3s ease;
 }
 
-.searchInput:focus {
+.searchInput:focus,
+.typeSelect:focus {
   outline: none;
   border-color: #667eea;
 }
@@ -41,4 +43,28 @@
   font-size: 0.8rem;
   color: #e74c3c;
   margin-top: 0.25rem;
+}
+
+.resultsCount {
+  background: #667eea;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .filter-group {
+    min-width: auto;
+  }
+
+  .results-count {
+    align-self: flex-start;
+  }
 }
