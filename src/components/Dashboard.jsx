@@ -5,12 +5,23 @@ import styles from "./Dashboard.module.css";
 import useDebounce from "../hooks/useDebounce";
 import Filters from "./Filters";
 import ChartTypeDistribution from "./ChartTypeDistribution";
+import ChartEmptyState from "./ChartEmptyState";
+import ChartScatterPlot from "./ChartScatterPlot";
+import ChartRadarStats from "./ChartRadarStats";
 
 // Search query
 // Pass to Filter
 // Add Type filter
 // Check if we get the right data based on the Filter + Search combo
 // Type distribution bar chart (based the selected types, the pokemon with other types will be represented)
+// Radar Chart or Scatter chart
+// Histogram or Comparison chart
+// 0 results ( empty chart )
+// 1 results ( radar chart, comparison chart )
+// 1 - 6 results ( radar chart, histogram )
+// more than 6 ( scatter chart, histogram )
+// Make a dynamic chart selector logic
+// Focus on primary (Empty, Radar, Scatter)
 
 const Dashboard = () => {
   const { pokemonData, pokemonDataLoading, pokemonFetchError } =
@@ -40,6 +51,19 @@ const Dashboard = () => {
 
     return filtered;
   }, [pokemonData, selectedType, debouncedSearchQuery]);
+
+  //Dynamic chart selection logic
+  const getChartsToRender = (results) => {
+    const count = results.length;
+
+    return {
+      primary: count === 0 ? "empty" : count <= 6 ? "radar" : "scatter",
+      // secondary: count > 1 ? "histogram" : "comparison", (Very ambitious, will do if time permits)
+    };
+  };
+
+  const { primary, secondary } = getChartsToRender(filteredData);
+  console.log(primary);
 
   if (pokemonDataLoading) {
     return (
@@ -77,6 +101,21 @@ const Dashboard = () => {
         <div className="chart-section">
           <h3>Type Distribution in Current Selection</h3>
           <ChartTypeDistribution pokemonData={filteredData} />
+        </div>
+
+        <div className="chart-section">
+          <h3>
+            {primary === "empty" && "No Results Found"}
+            {primary === "radar" && "Stat Comparison"}
+            {primary === "scatter" && "Battle Role Analysis"}
+          </h3>
+          {primary === "empty" && <ChartEmptyState searchQuery={searchQuery} />}
+          {primary === "radar" && (
+            <ChartRadarStats pokemonData={filteredData} />
+          )}
+          {primary === "scatter" && (
+            <ChartScatterPlot pokemonData={filteredData} />
+          )}
         </div>
       </div>
     </div>
